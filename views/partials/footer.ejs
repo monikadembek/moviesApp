@@ -1,0 +1,12 @@
+		<footer>
+			<nav>
+				<a href="/movies">Show Movies</a>
+				<a href="/movies/new">Add Movie</a>
+				<a href="/movies/:id/edit">Edit Movie</a>
+				<form action="/movies/:id?_method=DELETE" method="POST">
+					<input type="submit" value="Remove Movie" name="movies._id">
+				</form>
+			</nav>
+		</footer>
+	</body>
+</html>
