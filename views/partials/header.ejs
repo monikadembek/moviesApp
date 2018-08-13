@@ -10,8 +10,12 @@
 		<header>
 			<nav>
 				<a href="/">Movie App</a>
-				<a href="/register">Sign in</a>
-				<a href="/login">Login</a>
-				<a href="/logout">Log out</a>
+				<% if (currentUser) { %>
+					Signed in as <%= currentUser.username%>
+					<a href="/logout">Log out</a>	
+				<% } else { %>
+					<a href="/register">Sign in</a>
+					<a href="/login">Login</a>
+				<% } %>
 			</nav>
 		</header>
