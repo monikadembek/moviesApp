@@ -1,7 +1,7 @@
 //comment model
 const mongoose = require("mongoose");
 
-const commentSchema = new mongoosee.Schema({
+const commentSchema = new mongoose.Schema({
 	content: String,
 	author: {
 		id: {
