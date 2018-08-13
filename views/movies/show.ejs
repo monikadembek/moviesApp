@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+		<main>
+			<h3><%= movie.title%></h3>
+			<img src="<%= movie.photo%>">
+			<p><%= movie.year%></p>
+			<p><%= movie.genre %></p>
+			<p><%= movie.description%></p>
+			<% if(currentUser && movie.author.id.equals(currentUser._id)) { %>
+			<form action="/movies/<%=movie._id%>?_method=DELETE" method="POST">
+				<button>DELETE Movie</button>
+			</form>
+			<a href="/movies/<%=movie._id%>/edit">EDIT Movie</a>
+			<% } %>
+			<% if(currentUser) { %>
+				<p>
+					<a href="/comments/add">Add Comment</a>
+				</p>
+			<% }%>
+		</main>
+<% include ../partials/footer %>
