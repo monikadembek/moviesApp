@@ -6,6 +6,7 @@ const 	express = require("express"),
 
 // requiring necessary models
 const Movie = require("../models/movie");
+const User = require("../models/user");
 
 
 
@@ -77,8 +78,28 @@ router.get("/:id", function(req, res){
 
 
 //EDIT ROUTE - shows form to edit database entity
+router.get("/:id/edit", middleware.checkMovieOwnership, function(req, res){
+	Movie.findById(req.params.id, function(err, foundMovie) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("movies/edit", {movie: foundMovie});
+		}
+	});	
+});
 
 // UPDATE ROUTE
+router.put("/:id", middleware.checkMovieOwnership, function(req, res){
+	// find movie with specific id and update it
+	Movie.findByIdAndUpdate(req.params.id, req.body.movie, function(err, updatedMovie){
+		if (err) {
+			console.log(err);
+			res.redirect("/movies");
+		} else {
+			res.redirect("/movies/" + req.params.id);
+		}
+	});
+});
 
 
 // DESTROY ROUTE - deletes movie with given id
